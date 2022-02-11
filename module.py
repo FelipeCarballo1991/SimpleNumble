@@ -52,7 +52,7 @@ def numeroAleatorio(cantidad):
         [int]: Retorna un numero entero de [cantidad] cifras.
     """
     cadena = [numero for numero in range(0,10,1)]
-    print(cadena)
+    
     numero = ""
     for i in range (cantidad):
         numRandom = choice(cadena) 
@@ -73,7 +73,12 @@ def crearTablero():
 
 
 
-def gameLoop(win,board,game_loop_counter,numero):
+def gameLoop():
+
+    numero = numeroAleatorio(6) 
+    win = False
+    board = crearTablero()
+    game_loop_counter = 0
 
         
     while (not win) and (game_loop_counter<6):
@@ -118,16 +123,3 @@ def gameLoop(win,board,game_loop_counter,numero):
         print("GAME OVER")
         print(f"NUMERO: {numero}")
         
-#print(numeroAleatorio(11))
-#init game
-
-
-#GAME LOOP
-numero = numeroAleatorio(6) 
-win = False
-board = crearTablero()
-game_loop_counter = 0
-
-menu()
-gameLoop(win,board,game_loop_counter,numero)
-
