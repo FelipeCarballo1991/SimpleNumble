@@ -11,6 +11,15 @@ colors = {
 }
 
 def color_letter(letter,color):
+    """Pinta de un color una variable del tipo str.
+
+    Args:
+        letter ([type]): string
+        color ([type]): dict
+
+    Returns:
+        [type]: string
+    """
     return colors[color] + letter + colors["ENDC"]
 
 def cleaning():
@@ -31,13 +40,13 @@ verde = color_letter("NUM","green")
 amarillo =color_letter("NUM","yellow") 
 
 
-def menu():
+def menu(unNumero):
     cleaning()
     print("\nNUMDLE\nREGLAS DE JUEGO:")
     print(f"{verde} CORRECTO")
     print(f"{amarillo} OTRA POSICION")
     print(f"{rojo} INCORRECTO")
-    print("Ingrese un numero de 6 digitos para empezar:")
+    print(f"Ingrese un numero de {unNumero} digitos para empezar:")
 
 
 def numeroAleatorio(cantidad):
@@ -64,54 +73,56 @@ def numeroAleatorio(cantidad):
 
     return numero
 
-def crearTablero():
+def crearTablero(unNumero):
     board = []
-    for i in range (6):
-        board.append(["_" for i in range(6)])
+    for i in range (unNumero):
+        board.append(["_" for i in range(unNumero)])
     
     return board
 
 
 
-def gameLoop():
+def gameLoop(unNumero):
 
-    numero = numeroAleatorio(6) 
+    numero = numeroAleatorio(unNumero) 
     win = False
-    board = crearTablero()
+    board = crearTablero(unNumero)
     game_loop_counter = 0
 
+    menu(unNumero)
+
         
-    while (not win) and (game_loop_counter<6):
-        texto = input("")
-        while len(texto) != len(numero):
+    while (not win) and (game_loop_counter<unNumero):
+        numeroCompleto = input("")
+        while len(numeroCompleto) != len(numero):
             print(f"ERROR: el numero debe tener {len(numero)} digitos")
-            texto = input("")
+            numeroCompleto = input("")
 
         #win logic
-        if numero == texto:        
-            board[game_loop_counter] = [color_letter(letra,"green") for letra in texto]
+        if numero == numeroCompleto:        
+            board[game_loop_counter] = [color_letter(digito,"green") for digito in numeroCompleto]
             win = True   
         #numero in numero
         else:
             test_line = []
             for i in range (len(numero)):
-                if numero[i] == texto[i]:
-                    test_line.append(color_letter(texto[i],"green"))
-                elif texto[i] in numero:               
+                if numero[i] == numeroCompleto[i]:
+                    test_line.append(color_letter(numeroCompleto[i],"green"))
+                elif numeroCompleto[i] in numero:               
                     indice_numero = numero.index(numero[i])
-                    indice_texto = texto.index(texto[i])
+                    indice_texto = numeroCompleto.index(numeroCompleto[i])
                     if indice_numero != indice_texto:              
-                        test_line.append(color_letter(texto[i],"red"))
+                        test_line.append(color_letter(numeroCompleto[i],"red"))
                     else:
-                        test_line.append(color_letter(texto[i],"yellow"))                
+                        test_line.append(color_letter(numeroCompleto[i],"yellow"))                
                 else:
-                    test_line.append(color_letter(texto[i],"red"))
+                    test_line.append(color_letter(numeroCompleto[i],"red"))
                     
             board[game_loop_counter] = test_line
 
 
         #Dibujo del tablero
-        for i in range (6):
+        for i in range (unNumero):
             print(" ".join(board[i]))
 
         game_loop_counter +=1

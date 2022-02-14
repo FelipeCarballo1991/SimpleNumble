@@ -1,6 +1,5 @@
-from module import numeroAleatorio,crearTablero,menu,gameLoop
+from module import  gameLoop
 
 #GAME LOOP
-menu()
-gameLoop()
+gameLoop(6)
 
