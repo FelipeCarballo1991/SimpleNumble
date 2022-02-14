@@ -2,5 +2,5 @@ from module import  gameLoop
 
 #GAME LOOP
 
-gameLoop(6)
+gameLoop(4)
 
