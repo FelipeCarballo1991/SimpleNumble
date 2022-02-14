@@ -41,6 +41,13 @@ amarillo =color_letter("NUM","yellow")
 
 
 def menu(unNumero):
+    """Imprime por consola el menu de inicio del juego. 
+       Se le pasa por parametro la cantidad de digitos del numero a descubrir
+
+
+    Args:
+        unNumero (): int
+    """
     cleaning()
     print("\nNUMDLE\nREGLAS DE JUEGO:")
     print(f"{verde} CORRECTO")
@@ -74,6 +81,14 @@ def numeroAleatorio(cantidad):
     return numero
 
 def crearTablero(unNumero):
+    """Crea un tablero con unNumero de ancho. 
+
+    Args:
+        unNumero ([type]): int
+
+    Returns:
+        [type]: list
+    """
     board = []
     for i in range (unNumero):
         board.append(["_" for i in range(unNumero)])
@@ -83,6 +98,13 @@ def crearTablero(unNumero):
 
 
 def gameLoop(unNumero):
+    """Funcion de alto nivel que realiza un loop del juego. Se le debe pasar como parametro
+       el tamaño del numero a descubrir
+
+    Args:
+        unNumero ([type]): int
+    """
+
 
     numero = numeroAleatorio(unNumero) 
     win = False
